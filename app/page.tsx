@@ -7,18 +7,18 @@ export default function Chat() {
   });
 
   return (
-    <div style={{ padding: '2rem', font-family: 'system-ui, sans-serif', max-width: '600px', margin: '0 auto' }}>
-      <h1 style={{ font-size: '1.8rem', margin-bottom: '1rem' }}>My AI Agent</h1>
-      <div style={{ margin-bottom: '1rem' }}>
+    <div style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
+      <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>My AI Agent</h1>
+      <div style={{ marginBottom: '1rem' }}>
         {messages.map(m => (
-          <div key={m.id} style={{ 
-            padding: '0.75rem', 
-            borderRadius: '8px', 
+          <div key={m.id} style={{
+            padding: '0.75rem',
+            borderRadius: '8px',
             margin: '0.5rem 0',
             background: m.role === 'user' ? '#0070f3' : '#f0f0f0',
             color: m.role === 'user' ? 'white' : 'black',
-            alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start',
-            maxWidth: '80%'
+            maxWidth: '80%',
+            alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start'
           }}>
             <strong>{m.role === 'user' ? 'You' : 'AI'}:</strong> {m.content}
           </div>
