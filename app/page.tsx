@@ -9,7 +9,7 @@ export default function Chat() {
   return (
     <div style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
       <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>My AI Agent</h1>
-      <div style={{ marginBottom: '1rem' }}>
+      <div>
         {messages.map(m => (
           <div key={m.id} style={{
             padding: '0.75rem',
@@ -24,7 +24,7 @@ export default function Chat() {
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem' }}>
+      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
         <input
           value={input}
           onChange={handleInputChange}
