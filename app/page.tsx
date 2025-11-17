@@ -1,37 +1,36 @@
-﻿'use client';
-import { useChat } from '@ai-sdk/react';
+﻿// app/page.tsx
+'use client';
+
+// Ensure the 'ai' package is installed: npm install ai --legacy-peer-deps
+import { useChat } from 'ai/react';
 
 export default function Chat() {
-  const { messages, input, handleInputChange, handleSubmit } = useChat({
-    api: '/api/chat',
-  });
+  const { messages, input, handleInputChange, handleSubmit } = useChat();
 
   return (
-    <div style={{ padding: '2rem', fontFamily: 'system-ui, sans-serif', maxWidth: '600px', margin: '0 auto' }}>
-      <h1 style={{ fontSize: '1.8rem', marginBottom: '1rem' }}>My AI Agent</h1>
-      <div>
-        {messages.map(m => (
-          <div key={m.id} style={{
-            padding: '0.75rem',
-            borderRadius: '8px',
-            margin: '0.5rem 0',
-            background: m.role === 'user' ? '#0070f3' : '#f0f0f0',
-            color: m.role === 'user' ? 'white' : 'black',
-            maxWidth: '80%',
-            alignSelf: m.role === 'user' ? 'flex-end' : 'flex-start'
-          }}>
-            <strong>{m.role === 'user' ? 'You' : 'AI'}:</strong> {m.content}
+    <div className="flex flex-col w-full max-w-md mx-auto p-4">
+      <div className="flex-1 overflow-y-auto mb-4">
+        {messages.map((m) => (
+          <div key={m.id} className={`p-2 my-1 rounded ${m.role === 'user' ? 'bg-blue-100 text-right' : 'bg-gray-100 text-left'}`}>
+            <strong className={m.role === 'user' ? 'text-blue-700' : 'text-gray-700'}>
+              {m.role === 'user' ? 'You: ' : 'AI: '}
+            </strong>
+            {m.content}
           </div>
         ))}
       </div>
-      <form onSubmit={handleSubmit} style={{ display: 'flex', gap: '0.5rem', marginTop: '1rem' }}>
+
+      <form onSubmit={handleSubmit} className="flex gap-2">
         <input
           value={input}
+          placeholder="Type your message..."
           onChange={handleInputChange}
-          placeholder="Ask AI..."
-          style={{ flex: 1, padding: '0.75rem', borderRadius: '8px', border: '1px solid #ccc' }}
+          className="flex-1 border border-gray-300 rounded px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
-        <button type="submit" style={{ padding: '0.75rem 1rem', borderRadius: '8px', background: '#0070f3', color: 'white', border: 'none' }}>
+        <button
+          type="submit"
+          className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        >
           Send
         </button>
       </form>
